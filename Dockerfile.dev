@@ -1,0 +1,30 @@
+FROM ruby:3.3.1
+
+RUN apt-get update -qq && apt-get install -y --no-install-recommends \
+    curl \
+    gnupg \
+    build-essential \
+    libpq-dev
+
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
+    apt-get install -y nodejs=22.2.0-1nodesource1
+
+RUN npm install -g yarn
+
+WORKDIR /app
+
+COPY Gemfile Gemfile.lock ./
+
+RUN bundle install
+
+COPY . .
+
+RUN addgroup --system appgroup && adduser --system appuser --ingroup appgroup
+
+RUN chown -R appuser:appgroup /app
+
+USER appuser
+
+EXPOSE 3000
+
+CMD ["rails", "server", "-b", "0.0.0.0"]
