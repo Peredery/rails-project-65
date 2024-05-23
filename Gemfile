@@ -48,6 +48,9 @@ gem 'bootsnap', require: false
 
 group :production do
   # Use postgresql as the database for Active Record
+  gem "stackprof"
+  gem "sentry-ruby"
+  gem "sentry-rails"
   gem 'pg', '~> 1.1'
 end
 
