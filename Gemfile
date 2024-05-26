@@ -46,12 +46,17 @@ gem 'bootsnap', require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
+gem 'simple_form'
+gem 'slim-rails'
+
 group :production do
   # Use postgresql as the database for Active Record
-  gem "stackprof"
-  gem "sentry-ruby"
-  gem "sentry-rails"
   gem 'pg', '~> 1.1'
+  gem 'sentry-rails'
+  gem 'sentry-ruby'
+  gem 'stackprof'
 end
 
 group :development, :test do
@@ -61,11 +66,14 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   # Use sqlite3 as the database for Active Record
+  gem 'dotenv-rails'
+  gem 'faker'
   gem 'sqlite3', '~> 1.4'
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'annotate'
   gem 'web-console'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]

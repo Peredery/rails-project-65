@@ -6,3 +6,6 @@ lint:
 
 tests:
 	bundle exec rake test
+
+setup:
+	cp .env.example .env
