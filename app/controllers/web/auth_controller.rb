@@ -8,9 +8,14 @@ class Web::AuthController < ApplicationController
 
     if user
       sign_in(user)
-      redirect_to root_path
+      redirect_to root_path, notice: t('.login.success')
     else
-      redirect_to root_path
+      redirect_to root_path, alert: t('.login.failure')
     end
+  end
+
+  def destroy
+    logout(current_user)
+    redirect_to root_path, notice: t('.logout.success')
   end
 end

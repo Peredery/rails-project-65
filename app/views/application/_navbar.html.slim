@@ -1,8 +1,9 @@
-- unless user_signed_in?
-    = button_to "/auth/github", class: "btn btn-primary", data: { turbo: false } do
-        i.fab.fa-github
-        | Login with GitHub
-- else
-    = button_to "/auth/github", class: "btn btn-primary", data: { turbo: false } do
-    i.fab.fa-exit
-    | Logout
+.container.mb-2
+  - unless user_signed_in?
+      = button_to "/auth/github", class: "btn btn-primary", data: { turbo: false } do
+          i.fab.fa-github
+          | Login with GitHub
+  - else
+      = button_to auth_logout_url, class: "btn btn-primary", method: :delete, data: { turbo: false } do
+          i.fab.fa-exit
+          | Logout
