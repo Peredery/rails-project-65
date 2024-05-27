@@ -20,6 +20,8 @@ module Authenticatable
   end
 
   def authenticate_user_from_session
+    return unless session[:user_id].nil?
+
     User.find(session[:user_id])
   end
 
