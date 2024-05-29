@@ -1,0 +1,14 @@
+.row.rounded.p-1.shadow-lg.mt-5
+  .col-12.m-3
+    h3 = t('.create')
+    = simple_form_for @bulletin, html: { multipart: true } do |f|
+      .row
+        .col-6
+          = f.input :title
+          = f.association :category
+          = f.input :image, as: :file, input_html: { onchange: 'previewImage(event)' }
+          = f.input :description
+          = f.button :submit, class: 'btn btn-primary'
+        .col-6
+          #image-preview.mt-3
+            img#image-preview-tag.img-fluid

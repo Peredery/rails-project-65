@@ -8,7 +8,7 @@ module Authenticatable
   end
 
   def authenticate_user!
-    redirect to root_path unless current_user
+    redirect_to root_path, alert: t('need_login') unless current_user
   end
 
   def current_user

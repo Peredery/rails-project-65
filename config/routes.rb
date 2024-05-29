@@ -9,9 +9,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   scope module: 'web' do
-    root 'home#index'
+    root 'bulletins#index'
     post 'auth/:provider', to: 'auth#request', as: :auth_request
     delete 'auth/logout', to: 'auth#destroy'
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
+
+    resources :bulletins
   end
 end

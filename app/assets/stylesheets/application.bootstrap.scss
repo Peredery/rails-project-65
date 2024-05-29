@@ -1,2 +1,11 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+.navbar {
+    box-shadow: 0 0 2rem 0 rgba(43, 51, 69, 0.1);
+}
+
+.nav-link {
+    background-color: #cfdde9;
+    border-radius: 7px;
+}

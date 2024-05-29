@@ -1,0 +1,10 @@
+h1 = t('.latest_bulletins')
+.row
+  - @bulletins.each do |bulletin|
+    .col-3.pt-2
+      .card.shadow-sm
+        = image_tag resized_image(bulletin, 400, 400), class: 'card-img-top x-object-fit-cover'
+        .card-body
+          = link_to bulletin.title, bulletin, class: 'card-title'
+          .card-subtitle.text-muted.mb-2
+            = time_ago_in_words(bulletin.created_at)

@@ -14,9 +14,9 @@
 #
 
 one:
-  name: MyString
-  email: MyString
+  name: <%= Faker::Name.name %>
+  email: <%= Faker::Internet.email %>
 
 two:
-  name: MyString
-  email: MyString
+  name: <%= Faker::Name.name %>
+  email: <%= Faker::Internet.email %>

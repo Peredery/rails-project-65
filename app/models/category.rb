@@ -2,21 +2,20 @@
 
 # == Schema Information
 #
-# Table name: users
+# Table name: categories
 #
 #  id         :integer          not null, primary key
-#  email      :string           not null
 #  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 # Indexes
 #
-#  index_users_on_email  (email) UNIQUE
+#  index_categories_on_name  (name) UNIQUE
 #
-class User < ApplicationRecord
-  validates :email, :name, presence: true
-  validates :email, uniqueness: true
+class Category < ApplicationRecord
+  validates :name, presence: true
+  validates :name, uniqueness: true
 
-  has_many :bulletins, dependent: :destroy
+  has_many :bulletins, dependent: :destroy, inverse_of: :category
 end

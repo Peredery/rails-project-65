@@ -1,0 +1,17 @@
+.row.rounded.p-1.shadow-lg.mt-5
+  h3 = @bulletin.title
+  .col-6
+    = image_tag resized_image(@bulletin, 500, 400)
+    p.mt-3.text-muted
+      | #{t('.detailed_description')}:
+    p = @bulletin.description
+  .col-4
+    p.mb-0
+      | #{t('.author')}: 
+      = @bulletin.user.name
+    p.text-muted.mb-0
+      | #{t('category')}: 
+      = @bulletin.category.name
+    p.text-muted.mb-0
+      | #{t('created_at')}: 
+      = time_ago_in_words(@bulletin.created_at)
