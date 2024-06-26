@@ -11,6 +11,10 @@ module Authenticatable
     redirect_to root_path, alert: t('need_login') unless current_user
   end
 
+  def authorize_admin
+    current_user.admin?
+  end
+
   def current_user
     Current.user || authenticate_user_from_session
   end

@@ -10,7 +10,7 @@ html
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
 
   body
-    = render partial: 'navbar'
-    = render partial: 'flash'
+    = render 'layouts/shared/navbar'
+    = render 'layouts/shared/flash'
     .container
       = yield

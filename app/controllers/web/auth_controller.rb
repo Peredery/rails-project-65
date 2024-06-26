@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Web::AuthController < ApplicationController
+class Web::AuthController < Web::ApplicationController
   def callback
     auth_params = request.env['omniauth.auth'][:info]
 

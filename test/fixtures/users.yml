@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id         :integer          not null, primary key
+#  admin      :boolean
 #  email      :string           not null
 #  name       :string           not null
 #  created_at :datetime         not null
@@ -16,7 +17,14 @@
 one:
   name: <%= Faker::Name.name %>
   email: <%= Faker::Internet.email %>
+  admin: false
 
 two:
   name: <%= Faker::Name.name %>
   email: <%= Faker::Internet.email %>
+  admin: false
+
+admin:
+  name: <%= Faker::Name.name %>
+  email: <%= Faker::Internet.email %>
+  admin: true
