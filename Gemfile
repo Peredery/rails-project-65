@@ -48,8 +48,11 @@ gem 'bootsnap', require: false
 
 gem 'aasm'
 gem 'active_storage_validations'
+gem 'aws-sdk-s3'
 gem 'bootstrap5-kaminari-views'
+gem 'faker'
 gem 'i18n-debug'
+gem 'i18n-tasks'
 gem 'image_processing'
 gem 'kaminari'
 gem 'mini_magick'
@@ -59,8 +62,6 @@ gem 'rails-i18n'
 gem 'ransack'
 gem 'simple_form'
 gem 'slim-rails'
-gem 'faker'
-gem 'aws-sdk-s3'
 
 group :production do
   # Use postgresql as the database for Active Record

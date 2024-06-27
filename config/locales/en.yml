@@ -1,18 +1,123 @@
+---
 en:
-  project_name: 'Bulletin Board'
-  home: 'Home'
-  login: 'Login'
-  logout: 'Logout'
-  created_at: 'Created at'
-  author: 'Author'
-  detailed_description: 'Detailed description'
-  name: 'Name'
-  need_login: 'You should log in'
-  profile: 'My Bulletins'
-  
-  github:
-    login: 'Log in with GitHub'
-
+  '':
+    image_mime_type: Image mime type
+    image_size: Image size
   bulletin:
-    create: 'Create Bulletin'
-  
+    admin_page: Admin page
+    create: Create
+  category: Category
+  created_at: Created at
+  github:
+    login: Log in with GitHub
+  home: Home
+  logout: Logout
+  need_login: You should log in
+  not_authorized: Not authorized
+  profile: My Bulletins
+  project_name: Bulletin Board
+  reset: Reset
+  web:
+    admin:
+      bulletins:
+        archive:
+          failure: Failure
+          success: Success
+        index:
+          actions: Actions
+          archive: Archive
+          bulletin:
+            empty: Empty
+          confrim:
+            archive: Are you sure to archive?
+            publish: Are you sure to publish?
+            reject: Reject
+          publish: Publish
+          publish_date: Publish date
+          reject: Reject
+          state: State
+          table_title: Title
+          title: Bulletins
+        publish:
+          failure: Failure
+          success: Success
+        reject:
+          failure: Failure
+          success: Success
+      categories:
+        create:
+          failure: Failure
+          success: Success
+        destroy:
+          failure: Failure
+          success: Success
+        edit:
+          title: Edit bulletin
+        index:
+          actions: Actions
+          categories:
+            empty: Empty
+          confrim:
+            delete: Delete
+          destroy: Destroy
+          edit: Edit
+          id: Id
+          name: Name
+          new: New
+          title: Categories
+        new:
+          title: Create
+        update:
+          failure: Failure
+          success: Success
+      shared:
+        sidebar:
+          all_bulletins: All bulletins
+          all_categories: All categories
+          under_moderation: Under moderation
+    auth:
+      callback:
+        login:
+          failure: Failure
+          success: Success
+      destroy:
+        logout:
+          success: Success
+    bulletins:
+      archive:
+        failure: Failure
+        success: Success
+      create:
+        failure: Failure
+        success: Success
+      edit:
+        edit: Edit
+      index:
+        latest_bulletins: Latest bulletins
+      new:
+        create: Create bulletin
+      show:
+        author: Author
+        detailed_description: Detailed description
+      to_moderate:
+        failure: Failure
+        success: Success
+      update:
+        failure: Failure
+        success: Success
+    profile:
+      index:
+        actions: Actions
+        archive: Archive
+        bulletin:
+          create: Create
+          empty: Empty
+          profile: Profile
+        confrim:
+          archive: Are you sure to archive?
+          to_moderate: Are you sure to moderate?
+        edit: Edit
+        publish_date: Publish date
+        show: Show
+        state: State
+        to_moderate: To moderate
