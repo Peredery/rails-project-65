@@ -1,16 +1,27 @@
----
-
 AllCops:
-  DisplayCopNames: true
-  Exclude:
-    - "bin/**"
-    - "db/schema.rb"
-    - "db/migrate/**"
-    - "vendor/**/*"
-    - "node_modules/**/*"
-  NewCops: enable
-  TargetRailsVersion: 7
   TargetRubyVersion: 3.2.2
+  NewCops: enable
+  Exclude:
+    - 'code/bin/**'
+    - 'code/db/schema.rb'
+    - 'code/db/migrate/**'
+    - 'code/vendor/**/*'
+    - 'code/node_modules/**/*'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+  SuggestExtensions: false
+
+require:
+  - rubocop-rails
+
+Rails:
+  Enabled: true
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
 
 Layout/LineLength:
   Enabled: false
@@ -18,36 +29,14 @@ Layout/LineLength:
 Metrics/AbcSize:
   Enabled: false
 
-Metrics/BlockLength:
-  Enabled: false
-
-Metrics/CyclomaticComplexity:
-  Enabled: false
-
-Metrics/ClassLength:
-  Enabled: false
-
 Metrics/MethodLength:
-  Enabled: false
-
-Metrics/PerceivedComplexity:
-  Enabled: false
-
-Rails:
-  Enabled: true
-
-require:
-  - rubocop-performance
-  - rubocop-rails
-
-Style/AsciiComments:
-  Enabled: false
-
-Style/ClassAndModuleChildren:
   Enabled: false
 
 Style/Documentation:
   Enabled: false
 
-Style/IfUnlessModifier:
+Metrics/BlockLength:
+  Enabled: false
+
+Style/AsciiComments:
   Enabled: false
