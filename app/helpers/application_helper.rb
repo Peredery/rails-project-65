@@ -4,6 +4,6 @@ module ApplicationHelper
   def resized_image(record, width, height)
     return unless record.image.attached?
 
-    record.image.variant(resize_to_limit: [300, 300])
+    record.image.variant(resize_to_limit: [width, height])
   end
 end
