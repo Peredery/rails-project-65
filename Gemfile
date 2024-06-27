@@ -59,6 +59,8 @@ gem 'rails-i18n'
 gem 'ransack'
 gem 'simple_form'
 gem 'slim-rails'
+gem 'faker'
+gem 'aws-sdk-s3'
 
 group :production do
   # Use postgresql as the database for Active Record
@@ -76,7 +78,6 @@ group :development, :test do
   gem 'rubocop-rails'
   # Use sqlite3 as the database for Active Record
   gem 'dotenv-rails'
-  gem 'faker'
   gem 'sqlite3', '~> 1.4'
 end
 
