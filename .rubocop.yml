@@ -1,23 +1,29 @@
----
-
-require:
-  - rubocop-minitest
-  - rubocop-rails
-
 AllCops:
+  TargetRubyVersion: 3.2.2
   NewCops: enable
   Exclude:
-    - 'bin/**/*'
+    - 'bin/**'
     - 'db/schema.rb'
-    - 'db/migrate/**/*'
+    - 'db/migrate/**'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+  SuggestExtensions: false
 
-Style/Documentation:
-  Enabled: false
+require:
+  - rubocop-rails
 
-Style/HashEachMethods:
-  Enabled: false
+Rails:
+  Enabled: true
 
 Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Layout/LineLength:
   Enabled: false
 
 Metrics/AbcSize:
@@ -26,9 +32,11 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Enabled: false
 
+Style/Documentation:
+  Enabled: false
+
 Metrics/BlockLength:
   Enabled: false
 
-Layout/LineLength:
-  Exclude:
-    - 'config/**/*'
+Style/AsciiComments:
+  Enabled: false
