@@ -20,4 +20,12 @@ class BulletinPolicy < ApplicationPolicy
   def create?
     new?
   end
+
+  def to_moderate?
+    edit?
+  end
+
+  def archive?
+    edit?
+  end
 end

@@ -13,12 +13,25 @@ Rails.application.routes.draw do
     post 'auth/:provider', to: 'auth#request', as: :auth_request
     delete 'auth/logout', to: 'auth#destroy'
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
+    get 'profile', to: 'profile#index', as: :profile
 
-    resources :bulletins
+    resources :bulletins do
+      member do
+        patch :to_moderate
+        patch :archive
+      end
+    end
+
     namespace :admin do
-      root 'bulletins#index'
-      resources :bulletins, only: :index
-      resources :categories
+      root 'bulletins#index', filter_state: :under_moderation
+      resources :bulletins, only: :index, filter_state: :all do
+        member do
+          patch :publish
+          patch :archive
+          patch :reject
+        end
+      end
+      resources :categories, except: :show
     end
   end
 end

@@ -23,10 +23,11 @@ end
 
 IMAGES = %w[test_image_1.png test_image_2.jpg].freeze
 
-20.times do
+300.times do
   bulletin = Bulletin.create(
     title: Faker::Lorem.sentence(word_count: 3, supplemental: false, random_words_to_add: 0).truncate(50),
     description: Faker::Lorem.paragraph(sentence_count: 5).truncate(1000),
+    state: Bulletin.aasm.states.sample,
     category: Category.order('RANDOM()').limit(1).last,
     user: User.order('RANDOM()').limit(1).last
   )

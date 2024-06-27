@@ -1,0 +1,43 @@
+.row.rounded.p-1.shadow-lg.mt-5
+  = render 'web/admin/shared/sidebar'
+
+  .col-md-9
+    h2.mt-4 = t('.title')
+    - unless current_page?(admin_root_path)
+      = search_form_for @q, url: admin_bulletins_path, method: :get, class: 'form' do |f|
+        .row
+          .col-4
+            = f.input :title_cont, label: false
+          .col-4
+            = f.input :state_eq, collection: Bulletin.aasm.states, as: :select, label: false, include_blank: true
+          .col-3
+            = f.button :submit, class: 'btn btn-primary me-2'
+            = link_to t('reset'), admin_bulletins_path, class: 'btn btn-secondary'
+    - if @bulletins.empty?
+      p= t('.bulletin.empty')
+    - else
+        table.table.table-borderless
+          thead
+            tr
+              th
+                = t('.title')
+              - unless current_page?(admin_root_path)
+                th
+                  = t('.state')
+              th
+                = t('.publish_date')
+              th
+                = t('.actions')
+          tbody
+            - @bulletins.each do |bulletin|
+                  tr
+                    td = link_to bulletin.title, bulletin
+                    - unless current_page?(admin_root_path)
+                      td = bulletin.aasm.human_state
+                    td = time_ago_in_words(bulletin.created_at)
+                    td 
+                      = link_to t('.publish'), publish_admin_bulletin_path(bulletin), data: { turbo_method: :patch, turbo_confirm: t('.confrim.publish') }, class: 'me-2'
+                      = link_to t('.reject'), reject_admin_bulletin_path(bulletin), data: { turbo_method: :patch, turbo_confirm: t('.confrim.reject') }, class: 'me-2'
+                      = link_to t('.archive'), archive_admin_bulletin_path(bulletin), data: { turbo_method: :patch, turbo_confirm: t('.confrim.archive') }, class: 'text-danger me-2'
+  = paginate @bulletins, theme: 'bootstrap-5', pagination_class: 'pagination flex-wrap justify-content-end', nav_class: 'pt-3', params: { controller: 'admin/bulletins', action: 'index' } 
+

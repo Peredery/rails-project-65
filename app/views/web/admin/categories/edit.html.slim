@@ -1,0 +1,5 @@
+.row.rounded.p-1.shadow-lg.mt-5
+  = render 'web/admin/shared/sidebar'
+  .col-md-9
+    h2 = t('.title')
+    = render 'web/admin/categories/shared/form', path: admin_category_path(@category)

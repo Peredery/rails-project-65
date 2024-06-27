@@ -1,11 +1,11 @@
-    = simple_form_for @bulletin, html: { multipart: true } do |f|
-      .row
-        .col-6
-          = f.input :title
-          = f.association :category
-          = f.input :image, as: :file, input_html: { onchange: 'previewImage(event)' }
-          = f.input :description
-          = f.button :submit, class: 'btn btn-primary'
-        .col-6
-          #image-preview.mt-3
-            img#image-preview-tag.img-fluid
+= simple_form_for @bulletin, html: { multipart: true } do |f|
+  .row
+    .col-6
+      = f.input :title
+      = f.association :category
+      = f.input :image, as: :file, input_html: { onchange: 'previewImage(event)' }
+      = f.input :description
+      = f.button :submit, class: 'btn btn-primary'
+    .col-6
+      #image-preview.mt-3
+        img#image-preview-tag.img-fluid

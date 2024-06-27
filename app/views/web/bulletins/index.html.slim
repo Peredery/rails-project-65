@@ -1,10 +1,21 @@
 h1 = t('.latest_bulletins')
+= search_form_for @q, url: bulletins_path, method: :get, class: 'form' do |f|
+  .row
+    .col-6
+      = f.input :title_cont, label: false
+    .col-4
+      = f.input :category_id_eq, collection: @categories, as: :select, label: false, include_blank: true
+    .col-2
+      = f.button :submit, class: 'btn btn-primary me-2'
+      = link_to t('reset'), root_path, class: 'btn btn-secondary'
+
 .row
   - @bulletins.each do |bulletin|
     .col-3.pt-2
       .card.shadow-sm
-        = image_tag resized_image(bulletin, 400, 400), class: 'card-img-top x-object-fit-cover'
+        = image_tag resized_image(bulletin, 300, 300), class: 'card-img-top x-object-fit-cover'
         .card-body
           = link_to bulletin.title, bulletin, class: 'card-title'
           .card-subtitle.text-muted.mb-2
             = time_ago_in_words(bulletin.created_at)
+  = paginate @bulletins, theme: 'bootstrap-5', pagination_class: 'pagination flex-wrap justify-content-end', nav_class: 'pt-3'

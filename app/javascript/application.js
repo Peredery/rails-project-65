@@ -4,7 +4,10 @@ import "./controllers"
 import * as bootstrap from "bootstrap"
 
 document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector('input[type="file"]').addEventListener("change", previewImage);
+    const fileInput = document.querySelector('input[type="file"]')
+    if(fileInput) {
+      fileInput.addEventListener("change", previewImage);
+    }
   });
   
   function previewImage(event) {

@@ -18,4 +18,8 @@ class Category < ApplicationRecord
   validates :name, uniqueness: true
 
   has_many :bulletins, dependent: :destroy, inverse_of: :category
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name]
+  end
 end

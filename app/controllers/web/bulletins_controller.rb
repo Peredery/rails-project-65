@@ -4,7 +4,10 @@ class Web::BulletinsController < Web::ApplicationController
   before_action :authenticate_user!, only: [:new]
 
   def index
-    @bulletins = Bulletin.order(created_at: :desc)
+    @q = Bulletin.published.order(updated_at: :desc).ransack(params[:q])
+
+    @bulletins = @q.result.page(params[:page])
+    @categories = Category.order(name: :asc)
   end
 
   def show
@@ -41,6 +44,32 @@ class Web::BulletinsController < Web::ApplicationController
     else
       render :edit, alert: t('.failure'), status: :unprocessable_entity
     end
+  end
+
+  def to_moderate
+    @bulletin = Bulletin.find(params[:id])
+    authorize @bulletin
+
+    if @bulletin.may_to_moderate?
+      @bulletin.to_moderate!
+      flash[:notice] = t('.success')
+    else
+      flash[:alert] = t('.failure')
+    end
+    redirect_to :profile
+  end
+
+  def archive
+    @bulletin = Bulletin.find(params[:id])
+    authorize @bulletin
+
+    if @bulletin.may_archive?
+      @bulletin.archive!
+      flash[:notice] = t('.success')
+    else
+      flash[:alert] = t('.failure')
+    end
+    redirect_to :profile
   end
 
   private

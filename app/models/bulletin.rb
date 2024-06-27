@@ -6,6 +6,7 @@
 #
 #  id          :integer          not null, primary key
 #  description :text             not null
+#  state       :string
 #  title       :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -25,6 +26,32 @@
 #  user_id      (user_id => users.id)
 #
 class Bulletin < ApplicationRecord
+  include AASM
+
+  aasm column: 'state' do
+    state :draft, initial: true
+    state :under_moderation
+    state :published
+    state :rejected
+    state :archived
+
+    event :to_moderate do
+      transitions from: :draft, to: :under_moderation
+    end
+
+    event :publish do
+      transitions from: :under_moderation, to: :published
+    end
+
+    event :reject do
+      transitions from: :under_moderation, to: :rejected
+    end
+
+    event :archive do
+      transitions from: %i[draft under_moderation rejected published], to: :archived
+    end
+  end
+
   has_one_attached :image
   belongs_to :category
   belongs_to :user
@@ -33,4 +60,12 @@ class Bulletin < ApplicationRecord
   validates :description, presence: true, length: { maximum: 1000 }
   validates :image, presence: true, attached: true, content_type: { in: ['image/jpeg', 'image/png', 'image/webp'], message: I18n.t('.image_mime_type') },
                     size: { less_than: 5.megabytes, message: I18n.t('.image_size') }
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[title state]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[category]
+  end
 end

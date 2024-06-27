@@ -6,6 +6,7 @@
 #
 #  id          :integer          not null, primary key
 #  description :text             not null
+#  state       :string
 #  title       :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -24,7 +25,6 @@
 #  category_id  (category_id => categories.id)
 #  user_id      (user_id => users.id)
 #
-# test/models/bulletin_test.rb
 
 require 'test_helper'
 
