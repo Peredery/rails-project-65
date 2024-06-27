@@ -56,7 +56,8 @@ class Bulletin < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, presence: true, length: { maximum: 1000 }
-  validates :image, presence: true, attached: true, content_type: { in: ['image/jpeg', 'image/png', 'image/webp'], message: I18n.t('.image_mime_type') },
+  validates :image, presence: true, attached: true, content_type:
+            { in: ['image/jpeg', 'image/png', 'image/webp'], message: I18n.t('.image_mime_type') },
                     size: { less_than: 5.megabytes, message: I18n.t('.image_size') }
 
   def self.ransackable_attributes(_auth_object = nil)
