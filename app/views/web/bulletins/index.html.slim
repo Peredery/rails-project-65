@@ -13,7 +13,7 @@ h1 = t('.latest_bulletins')
   - @bulletins.each do |bulletin|
     .col-3.pt-2
       .card.shadow-sm
-        = image_tag resized_image(bulletin, 300, 300), class: 'card-img-top x-object-fit-cover'
+        = image_tag resized_image(bulletin, 300, 300), class: 'card-img-top x-object-fit-cover', height: 200, width: 200
         .card-body
           = link_to bulletin.title, bulletin, class: 'card-title'
           .card-subtitle.text-muted.mb-2

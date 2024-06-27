@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddCategoryAndUserToBulletins < ActiveRecord::Migration[7.1]
   def change
     add_reference :bulletins, :category, null: false, foreign_key: true
