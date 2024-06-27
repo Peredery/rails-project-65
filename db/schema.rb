@@ -48,8 +48,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_26_172731) do
     t.integer "user_id", null: false
     t.string "state"
     t.index ["category_id"], name: "index_bulletins_on_category_id"
-    t.index ["description"], name: "index_bulletins_on_description", unique: true
-    t.index ["title"], name: "index_bulletins_on_title", unique: true
     t.index ["user_id"], name: "index_bulletins_on_user_id"
   end
 
