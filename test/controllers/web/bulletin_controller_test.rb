@@ -3,7 +3,98 @@
 require 'test_helper'
 
 class Web::BulletinControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  setup do
+    @published_bulletin = bulletins_with_file(:published)
+    @drafted_bulletin = bulletins_with_file(:drafted)
+    @current_user = users(:one)
+    @create_params = {
+      bulletin: {
+        title: Faker::Lorem.sentence,
+        description: Faker::Lorem.paragraph,
+        image: fixture_file_upload('test_image_1.png', 'image/png'),
+        category_id: Category.last.id
+      }
+    }
+    @update_params = {
+      bulletin: {
+        title: Faker::Lorem.sentence,
+        description: Faker::Lorem.paragraph
+      }
+    }
+  end
+
+  test 'should get index' do
+    get root_path
+
+    assert :success
+  end
+
+  test 'should get show' do
+    get bulletin_url(@published_bulletin)
+
+    assert_response :success
+  end
+
+  test 'should not get show when bulletin is drafted from different user' do
+    sign_in(users(:two))
+    get bulletin_url(@drafted_bulletin)
+
+    assert_redirected_to root_url
+  end
+
+  test 'should get new for logged in user' do
+    sign_in(@current_user)
+    get new_bulletin_url
+
+    assert_response :success
+  end
+
+  test 'should not get new for not logged in user' do
+    get new_bulletin_url
+
+    assert_redirected_to root_url
+  end
+
+  test 'should create bulletin for logged in user' do
+    sign_in(@current_user)
+    post bulletins_url, params: @create_params
+
+    assert_redirected_to bulletin_url(Bulletin.last)
+  end
+
+  test 'should not create bulletin for not logged in user' do
+    post bulletins_url, params: @create_params
+
+    assert_redirected_to root_url
+  end
+
+  test 'should get edit for logged in user' do
+    sign_in(@current_user)
+    get edit_bulletin_url(@published_bulletin)
+
+    assert_response :success
+  end
+
+  test 'should not get edit for not author' do
+    sign_in(users(:two))
+    get edit_bulletin_url(@published_bulletin)
+
+    assert_redirected_to root_url
+  end
+
+  test 'should update bulletin for author' do
+    sign_in(@current_user)
+    patch bulletin_url(@published_bulletin), params: @create_params
+
+    assert_redirected_to bulletin_url(@published_bulletin)
+    assert @published_bulletin.reload.title == @create_params[:bulletin][:title]
+    assert @published_bulletin.reload.description == @create_params[:bulletin][:description]
+  end
+
+  test 'should not update bulletin for not author' do
+    sign_in(users(:two))
+    patch bulletin_url(@published_bulletin), params: @create_params
+
+    assert_redirected_to bulletin_url(@published_bulletin)
+  end
 end

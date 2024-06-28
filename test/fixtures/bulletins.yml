@@ -34,3 +34,24 @@ two:
   description: <%= Faker::Lorem.paragraph(sentence_count: 5).truncate(1000) %>
   category: two
   user: two
+
+published:
+    title: <%= Faker::Lorem.sentence(word_count: 3, supplemental: false, random_words_to_add: 0).truncate(50) %>
+    description: <%= Faker::Lorem.paragraph(sentence_count: 5).truncate(1000) %>
+    category: one
+    user: one
+    state: published
+
+drafted:
+    title: <%= Faker::Lorem.sentence(word_count: 3, supplemental: false, random_words_to_add: 0).truncate(50) %>
+    description: <%= Faker::Lorem.paragraph(sentence_count: 5).truncate(1000) %>
+    category: one
+    user: one
+    state: draft
+
+under_moderation:
+    title: <%= Faker::Lorem.sentence(word_count: 3, supplemental: false, random_words_to_add: 0).truncate(50) %>
+    description: <%= Faker::Lorem.paragraph(sentence_count: 5).truncate(1000) %>
+    category: one
+    user: one
+    state: under_moderation

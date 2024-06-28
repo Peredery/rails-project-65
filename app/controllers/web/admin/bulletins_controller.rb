@@ -15,7 +15,7 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
     else
       flash[:alert] = t('.failure')
     end
-    redirect_to admin_root_path
+    redirect_back fallback_location: admin_bulletins_path
   end
 
   def publish
@@ -27,7 +27,7 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
     else
       flash[:alert] = t('.failure')
     end
-    redirect_to admin_root_path
+    redirect_back fallback_location: admin_bulletins_path
   end
 
   def archive
@@ -39,6 +39,6 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
     else
       flash[:alert] = t('.failure')
     end
-    redirect_to admin_root_path
+    redirect_back fallback_location: admin_bulletins_path
   end
 end

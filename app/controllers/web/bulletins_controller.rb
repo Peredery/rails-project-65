@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Web::BulletinsController < Web::ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     @q = Bulletin.published.order(updated_at: :desc).ransack(params[:q])
