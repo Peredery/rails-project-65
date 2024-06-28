@@ -7,11 +7,11 @@
     p = @bulletin.description
   .col-4
     p.mb-0
-      | #{t('.author')}: 
+      | #{t('.author')}:
       = @bulletin.user.name
     p.text-muted.mb-0
-      | #{t('category')}: 
+      | #{t('category')}:
       = @bulletin.category.name
     p.text-muted.mb-0
-      | #{t('created_at')}: 
+      | #{t('created_at')}:
       = time_ago_in_words(@bulletin.created_at)

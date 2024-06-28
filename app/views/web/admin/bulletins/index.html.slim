@@ -14,7 +14,7 @@
             = f.button :submit, class: 'btn btn-primary me-2'
             = link_to t('reset'), admin_bulletins_path, class: 'btn btn-secondary'
     - if @bulletins.empty?
-      p= t('.bulletin.empty')
+      p = t('.bulletin.empty')
     - else
         table.table.table-borderless
           thead
@@ -35,9 +35,14 @@
                     - unless current_page?(admin_root_path)
                       td = bulletin.aasm.human_state
                     td = time_ago_in_words(bulletin.created_at)
-                    td 
-                      = link_to t('.publish'), publish_admin_bulletin_path(bulletin), data: { turbo_method: :patch, turbo_confirm: t('.confrim.publish') }, class: 'me-2'
-                      = link_to t('.reject'), reject_admin_bulletin_path(bulletin), data: { turbo_method: :patch, turbo_confirm: t('.confrim.reject') }, class: 'me-2'
-                      = link_to t('.archive'), archive_admin_bulletin_path(bulletin), data: { turbo_method: :patch, turbo_confirm: t('.confrim.archive') }, class: 'text-danger me-2'
-  = paginate @bulletins, theme: 'bootstrap-5', pagination_class: 'pagination flex-wrap justify-content-end', nav_class: 'pt-3', params: { controller: 'admin/bulletins', action: 'index' } 
-
+                    td
+                      = link_to t('.publish'), publish_admin_bulletin_path(bulletin),
+                        data: { turbo_method: :patch, turbo_confirm: t('.confrim.publish') }, class: 'me-2'
+                      = link_to t('.reject'), reject_admin_bulletin_path(bulletin),
+                        data: { turbo_method: :patch, turbo_confirm: t('.confrim.reject') }, class: 'me-2'
+                      = link_to t('.archive'), archive_admin_bulletin_path(bulletin),
+                        data: { turbo_method: :patch, turbo_confirm: t('.confrim.archive') }, class: 'text-danger me-2'
+  = paginate @bulletins, theme: 'bootstrap-5',
+    pagination_class: 'pagination flex-wrap justify-content-end',
+    nav_class: 'pt-3',
+    params: { controller: 'admin/bulletins', action: 'index' }

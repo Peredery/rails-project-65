@@ -1,30 +1,29 @@
 nav.navbar.x-navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top.mb-2
   .container
-    = link_to t('project_name'), root_path, class: "navbar-brand"
+    = link_to t('project_name'), root_path, class: 'navbar-brand'
     ul.navbar-nav.me-auto
       li.nav-item.me-2
-        = link_to t('home'), root_path, class: "nav-link x-nav-link"
+        = link_to t('home'), root_path, class: 'nav-link x-nav-link'
       - if current_user
         li.nav-item.me-2
-          = link_to t('profile'), profile_path, class: "nav-link x-nav-link"
+          = link_to t('profile'), profile_path, class: 'nav-link x-nav-link'
     ul.navbar-nav.ms-auto
-      - unless user_signed_in?
+      - if current_user
         li.nav-item
-          = button_to "/auth/github", class: "btn btn-primary", data: { turbo: false } do
+          = button_to '/auth/github', class: 'btn btn-primary', data: { turbo: false } do
             i.bi.bi-github
             =< t('github.login')
       - else
-
         li.nav-item.me-2
-          = link_to new_bulletin_path, class: "btn btn-primary" do
+          = link_to new_bulletin_path, class: 'btn btn-primary' do
             i.bi.bi-pen
             =< t('bulletin.create')
         - if current_user.admin?
           li.nav-item.me-2
-            = link_to admin_root_path, class: "btn btn-danger" do
+            = link_to admin_root_path, class: 'btn btn-danger' do
               i.bi.bi-wrench
               =< t('bulletin.admin_page')
         li.nav-item.me-2
-          = button_to auth_logout_url, class: "btn btn-secondary", method: :delete, data: { turbo: false } do
+          = button_to auth_logout_url, class: 'btn btn-secondary', method: :delete, data: { turbo: false } do
             i.bi.bi-box-arrow-right
             =< t('logout')
