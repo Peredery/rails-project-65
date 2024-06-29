@@ -7,6 +7,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
     @regular_user = users(:one)
     @category = categories(:one)
     @admin_user = users(:admin)
+    @empty_category = categories(:empty)
     @update_params = { category: { name: 'New name' } }
     @create_params = { category: { name: 'New category' } }
   end
@@ -79,11 +80,18 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert @category.reload.name == @update_params[:category][:name]
   end
 
-  test 'should delete category when admin' do
+  test 'should not delete not empty category when admin' do
     sign_in @admin_user
 
     delete admin_category_url(@category)
-    assert_not Category.exists?(@category.id)
+    assert Category.exists?(@category.id)
+  end
+
+  test 'should delete empty category when admin' do
+    sign_in @admin_user
+
+    delete admin_category_url(@empty_category)
+    assert_not Category.exists?(@empty_category.id)
   end
 
   test 'should get index when admin' do
