@@ -1,7 +1,18 @@
 .row.rounded.p-1.shadow-lg.mt-5
   h3 = t('.bulletin.profile')
-  .mt-2
+  hr
+  .m-2
     = link_to t('.bulletin.create'), new_bulletin_path
+
+  = search_form_for @q, url: profile_path, method: :get, class: 'form' do |f|
+    .row
+      .col-6
+        = f.input :title_cont, label: false
+      .col-4
+        = f.input :state_eq, collection: Bulletin.aasm.states, as: :select, label: false, include_blank: true, label_method: :human_name, value_method: :name
+      .col-2
+        = f.button :submit, class: 'btn btn-primary me-2'
+        = link_to t('reset'), profile_path, class: 'btn btn-secondary'
 
   - if @bulletins.empty?
     p = t('.bulletin.empty')

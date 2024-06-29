@@ -3,18 +3,19 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 import * as bootstrap from "bootstrap"
 
-document.addEventListener("DOMContentLoaded", function() {
-    const fileInput = document.querySelector('input[type="file"]')
-    if(fileInput) {
-      fileInput.addEventListener("change", previewImage);
-    }
-  });
-  
+document.addEventListener('DOMContentLoaded', () => {
   function previewImage(event) {
-    var reader = new FileReader();
-    reader.onload = function() {
-      var output = document.getElementById('image-preview-tag');
-      output.src = reader.result;
+    var input = event.target;
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var imgTag = document.getElementById('image-preview-tag');
+        imgTag.src = e.target.result;
+        imgTag.style.display = 'block'; 
+      };
+      reader.readAsDataURL(input.files[0]); 
     }
-    reader.readAsDataURL(event.target.files[0]);
   }
+
+  window.previewImage = previewImage;
+});

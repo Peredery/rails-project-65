@@ -6,6 +6,9 @@
       = f.input :image, as: :file, input_html: { onchange: 'previewImage(event)' }
       = f.input :description
       = f.button :submit, class: 'btn btn-primary'
-    .col-6
-      #image-preview.mt-3
-        img#image-preview-tag.img-fluid
+    .col-6.mt-4
+      .x-preview-image
+        - if @bulletin.image_attachment
+          = image_tag resized_image(@bulletin, 400, 500), class: 'img-thumbnail', id: 'image-preview-tag'
+        else
+          img.img-thumbnail#image-preview-tag style="display:none;"

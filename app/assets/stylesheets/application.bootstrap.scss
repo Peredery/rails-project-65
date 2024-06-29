@@ -9,3 +9,14 @@
     background-color: #cfdde9;
     border-radius: 7px;
 }
+
+.x-preview-image {
+    width: 400px;
+    height: 500px;
+    object-fit: cover;
+}
+
+.x-object-fit-cover {
+    -o-object-fit: cover;
+    object-fit: cover;
+}

@@ -4,7 +4,8 @@
     p = t('.categories.empty')
   - else
     .col-md-9
-      h2.mb-4 = t('.title')
+      h2.mt-4 = t('.title')
+      hr
       = link_to t('.new'), new_admin_category_path
       table.table.table-borderless
         thead
