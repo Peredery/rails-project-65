@@ -3,7 +3,7 @@
 class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   def index
     @q = Bulletin.send(params[:filter_state]).ransack(params[:q])
-    @bulletins = @q.result.page(params[:page])
+    @bulletins = @q.result.page(params[:page]).order(id: :asc)
   end
 
   def reject

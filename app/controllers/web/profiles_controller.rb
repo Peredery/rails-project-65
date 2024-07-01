@@ -5,6 +5,6 @@ class Web::ProfilesController < Web::ApplicationController
 
   def show
     @q = current_user.bulletins.ransack(params[:q])
-    @bulletins = @q.result.page(params[:page])
+    @bulletins = @q.result.page(params[:page]).order(id: :asc)
   end
 end
