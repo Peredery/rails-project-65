@@ -6,7 +6,7 @@ class Builders::UserBuilder
       User.find_or_initialize_by(email: auth_params[:email]).tap do |user|
         user.email = auth_params[:email]
         user.name = auth_params[:name]
-        user.save!
+        user.save
       end
     end
   end
