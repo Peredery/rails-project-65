@@ -1,4 +1,4 @@
-= simple_form_for @bulletin, html: { multipart: true } do |f|
+= simple_form_for bulletin, html: { multipart: true } do |f|
   .row
     .col-6
       = f.input :title
@@ -8,7 +8,7 @@
       = f.button :submit, class: 'btn btn-primary'
     .col-6.mt-4
       .x-preview-image
-        - if @bulletin.image_attachment
-          = image_tag resized_image(@bulletin, 400, 500), class: 'img-thumbnail', id: 'image-preview-tag'
+        - if bulletin.image_attachment
+          = image_tag resized_image(bulletin, 400, 500), class: 'img-thumbnail', id: 'image-preview-tag'
         else
           img.img-thumbnail#image-preview-tag style="display:none;"
