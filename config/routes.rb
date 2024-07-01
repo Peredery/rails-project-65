@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
     resource :profile, only: :show
 
-    resources :bulletins do
+    resources :bulletins, only: %i[index new create show update edit] do
       member do
         patch :to_moderate
         patch :archive
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
           patch :reject
         end
       end
-      resources :categories, except: :show
+      resources :categories, only: %i[index new create edit update destroy]
     end
   end
 end
