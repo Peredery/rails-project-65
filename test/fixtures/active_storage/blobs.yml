@@ -1,0 +1,5 @@
+bulletin_one_attachment: <%= ActiveStorage::FixtureSet.blob filename: "test_image_1.png" %>
+bulletin_two_attachment: <%= ActiveStorage::FixtureSet.blob filename: "test_image_2.jpg" %>
+bulletin_drafted_attachment: <%= ActiveStorage::FixtureSet.blob filename: "test_image_1.png" %>
+bulletin_published_attachment: <%= ActiveStorage::FixtureSet.blob filename: "test_image_1.png" %>
+bulletin_under_moderation_attachment: <%= ActiveStorage::FixtureSet.blob filename: "test_image_1.png" %>

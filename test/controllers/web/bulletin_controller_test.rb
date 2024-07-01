@@ -4,8 +4,8 @@ require 'test_helper'
 
 class Web::BulletinControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @published_bulletin = bulletins_with_file(:published)
-    @drafted_bulletin = bulletins_with_file(:drafted)
+    @published_bulletin = bulletins(:published)
+    @drafted_bulletin = bulletins(:drafted)
     @current_user = users(:one)
     @bulletin_attrs = {
       bulletin: {

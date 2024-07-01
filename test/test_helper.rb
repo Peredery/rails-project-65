@@ -14,13 +14,6 @@ module ActiveSupport
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
-
-    def bulletins_with_file(name)
-      bulletin = bulletins(name)
-      bulletin.image.attach(fixture_file_upload('test_image_1.png', 'image/png'))
-      bulletin.save!
-      bulletin
-    end
   end
 end
 

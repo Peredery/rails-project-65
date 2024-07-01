@@ -6,9 +6,9 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @regular_user = users(:one)
     @admin_user = users(:admin)
-    @drafted_bulletin = bulletins_with_file(:drafted)
-    @under_moderation_bulletin = bulletins_with_file(:under_moderation)
-    @published_bulletin = bulletins_with_file(:published)
+    @drafted_bulletin = bulletins(:drafted)
+    @under_moderation_bulletin = bulletins(:under_moderation)
+    @published_bulletin = bulletins(:published)
   end
 
   test 'should not get index when not admin' do
