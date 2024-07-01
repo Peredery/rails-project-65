@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Web::ProfileControllerTest < ActionDispatch::IntegrationTest
+class Web::ProfilesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
   end

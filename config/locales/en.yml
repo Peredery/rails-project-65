@@ -106,8 +106,8 @@ en:
       update:
         failure: Failure
         success: Success
-    profile:
-      index:
+    profiles:
+      show:
         actions: Actions
         archive: Archive
         bulletin:
