@@ -38,6 +38,7 @@ class Web::BulletinsController < Web::ApplicationController
 
   def update
     @bulletin = Bulletin.find(params[:id])
+    authorize @bulletin
 
     if @bulletin.update(bulletin_params)
       redirect_to @bulletin, notice: t('.success')

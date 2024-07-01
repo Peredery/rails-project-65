@@ -95,6 +95,7 @@ class Web::BulletinControllerTest < ActionDispatch::IntegrationTest
     sign_in(users(:two))
     patch bulletin_url(@published_bulletin), params: @create_params
 
-    assert_redirected_to bulletin_url(@published_bulletin)
+    assert_redirected_to root_url
+    assert @published_bulletin.reload.title != @create_params[:bulletin][:title]
   end
 end
