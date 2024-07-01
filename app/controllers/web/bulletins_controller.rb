@@ -17,7 +17,6 @@ class Web::BulletinsController < Web::ApplicationController
 
   def new
     @bulletin = current_user.bulletins.new
-    authorize @bulletin
   end
 
   def edit
@@ -27,7 +26,6 @@ class Web::BulletinsController < Web::ApplicationController
 
   def create
     @bulletin = current_user.bulletins.build(bulletin_params)
-    authorize @bulletin
 
     if @bulletin.save
       redirect_to @bulletin, notice: t('.success')

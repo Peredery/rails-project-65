@@ -9,16 +9,8 @@ class BulletinPolicy < ApplicationPolicy
     author?
   end
 
-  def new?
-    user
-  end
-
   def update?
     author?
-  end
-
-  def create?
-    new?
   end
 
   def to_moderate?
