@@ -49,6 +49,7 @@ en:
           failure: Failure
           success: Success
         destroy:
+          cant_delete_category: Cant delete category
           failure: Failure
           success: Success
         edit:
@@ -120,4 +121,5 @@ en:
         publish_date: Publish date
         show: Show
         state: State
+        table_title: Title
         to_moderate: To moderate
