@@ -11,6 +11,9 @@ en:
   github:
     login: Log in with GitHub
   home: Home
+  layouts:
+    application:
+      title: Bulletin board
   logout: Logout
   need_login: You should log in
   not_authorized: Not authorized
