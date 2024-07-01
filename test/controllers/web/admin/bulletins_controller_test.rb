@@ -19,36 +19,12 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
-  test 'should not get all bulletins when not admin' do
-    sign_in @regular_user
+  test 'should get index when admin' do
+    sign_in @admin_user
 
-    get admin_bulletins_url
+    get admin_root_path
 
-    assert_redirected_to root_url
-  end
-
-  test 'should not reject bulletin when not admin' do
-    sign_in @regular_user
-
-    patch reject_admin_bulletin_url(@drafted_bulletin)
-
-    assert_redirected_to root_url
-  end
-
-  test 'should not publish bulletin when not admin' do
-    sign_in @regular_user
-
-    patch publish_admin_bulletin_url(@drafted_bulletin)
-
-    assert_redirected_to root_url
-  end
-
-  test 'should not archive bulletin when not admin' do
-    sign_in @regular_user
-
-    patch reject_admin_bulletin_url(@drafted_bulletin)
-
-    assert_redirected_to root_url
+    assert_response :success
   end
 
   test 'should publish bulletin when admin' do

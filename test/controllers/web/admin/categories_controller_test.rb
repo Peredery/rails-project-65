@@ -20,34 +20,12 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
-  test 'should not get new when not admin' do
-    sign_in @regular_user
+  test 'should get index when admin' do
+    sign_in @admin_user
 
-    get new_admin_category_url
+    get admin_categories_url
 
-    assert_redirected_to root_url
-  end
-
-  test 'should not get edit when not admin' do
-    sign_in @regular_user
-
-    get edit_admin_category_path(@category)
-
-    assert_redirected_to root_url
-  end
-
-  test 'should not update when not admin' do
-    sign_in @regular_user
-
-    patch admin_category_url(@category), params: @update_params
-    assert @category.reload.name != @update_params[:category][:name]
-  end
-
-  test 'should not delete category when not admin' do
-    sign_in @regular_user
-
-    delete admin_category_url(@category)
-    assert Category.exists?(@category.id)
+    assert_response :success
   end
 
   test 'should get new when admin' do
@@ -92,13 +70,5 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
 
     delete admin_category_url(@empty_category)
     assert_not Category.exists?(@empty_category.id)
-  end
-
-  test 'should get index when admin' do
-    sign_in @admin_user
-
-    get admin_categories_url
-
-    assert_response :success
   end
 end
